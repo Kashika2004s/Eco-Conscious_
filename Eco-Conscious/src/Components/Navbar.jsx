@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../public/logo.png";
 import { FaRegUser, FaRegHeart, FaSearch } from "react-icons/fa";
 import { FiShoppingBag } from "react-icons/fi";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
@@ -161,7 +160,7 @@ const Navbar = () => {
     <nav style={styles.navbar}>
       {/* Logo and Eco-Conscious Text */}
       <div style={styles.logoContainer} onClick={navigateToHome}>
-        <img src="/logo.png" alt="Logo" />
+        <img src="/logo.png" alt="Logo" style={styles.logo} />
         <span style={styles.heading}>Eco-Conscious</span>
       </div>
 
