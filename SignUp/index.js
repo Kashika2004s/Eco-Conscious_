@@ -41,10 +41,8 @@ mongoose
 // Middleware
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "production"
-        ? process.env.REACT_APP_FRONTEND_URL
-        : "http://localhost:5173", // Dynamic CORS origin based on environment
+    // Replace this with your actual frontend URL on Vercel
+    origin: process.env.REACT_APP_FRONTEND_URL, // Vercel frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
