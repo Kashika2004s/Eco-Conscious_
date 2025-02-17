@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Eco_Tote from "../public/Eco _Tote.png";
-import perfume from "../public/perfume.png";
-import shoe from "../public/shoe_image.png";
-import { height, width } from "@fortawesome/free-solid-svg-icons/fa0";
 
 const Slider = () => {
   const navigate = useNavigate();
@@ -16,21 +12,21 @@ const Slider = () => {
 
   const slides = [
     {
-      imageUrl: Eco_Tote,
+      imageUrl: "/Eco_Tote.png", // Direct reference from public folder
       buttonStyle: { top: "68.5%", left: "58.5%", backgroundColor: "#8e9c77" },
       buttonText: "Explore !",
       textStyle: { color: "white", fontSize: "25px", fontWeight: "bold" },
       category: "bags",
     },
     {
-      imageUrl: perfume,
+      imageUrl: "/perfume.png", // Direct reference from public folder
       buttonStyle: { top: "66%", left: "37%", backgroundColor: "white" },
       buttonText: "Find Out !",
       textStyle: { color: "black", fontSize: "25px" },
       category: "Beauty Products",
     },
     {
-      imageUrl: shoe,
+      imageUrl: "/shoe_image.png", // Direct reference from public folder
       buttonStyle: { bottom: "4.5%", left: "40.15%", backgroundColor: "black" },
       buttonText: "Shop Now !",
       category: "footwear",
@@ -40,9 +36,9 @@ const Slider = () => {
   useEffect(() => {
       const interval = setInterval(() => {
         setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
-      },3000);
+      }, 3000);
       return () => clearInterval(interval);
-    }, [slides.length]);
+  }, [slides.length]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
