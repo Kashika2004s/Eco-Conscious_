@@ -161,7 +161,7 @@ const Navbar = () => {
     <nav style={styles.navbar}>
       {/* Logo and Eco-Conscious Text */}
       <div style={styles.logoContainer} onClick={navigateToHome}>
-        <img src={logo} alt="Logo" style={styles.logo} />
+        <img src="/logo.png" alt="Logo" style={styles.logo} />
         <span style={styles.heading}>Eco-Conscious</span>
       </div>
 
