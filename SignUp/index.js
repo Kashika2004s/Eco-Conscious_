@@ -16,18 +16,18 @@ const cartRouter = require("./routes/cart");
 const orderRoutes = require("./routes/order");
 const orderhistoryRoutes = require("./routes/orderhistory");
 const bestProductRouter = require("./routes/bestProduct");
-const verifyRouter=require('./routes/verify');
+const verifyRouter = require("./routes/verify");
 
 const errorHandler = require("./Middlewares/errorHandler");
 const searchRouter = require("./routes/search");
 const alternativeRouter = require("./routes/alternative");
 const authenticateToken = require("./Middlewares/tokenAuthentication");
-const feedbackRouter=require("./routes/feedback");
+const feedbackRouter = require("./routes/feedback");
 
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || process.env.PORT || 3000;
+const port = process.env.PORT || 3000; // Ensure this is only set to 3000 if no port is defined
 
 // MongoDB Connection
 mongoose
@@ -41,7 +41,10 @@ mongoose
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin:
+      process.env.NODE_ENV === "production"
+        ? process.env.REACT_APP_FRONTEND_URL
+        : "http://localhost:5173", // Dynamic CORS origin based on environment
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -50,6 +53,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use("/uploads", express.static("uploads"));
+
 // Routes
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
@@ -58,16 +62,14 @@ app.use("/api/products", authenticateToken, productsRouter);
 app.use("/api/edit", authenticateToken, editRouter);
 app.use("/api/delete", authenticateToken, deleteRouter);
 app.use("/api/wishlist", authenticateToken, wishlistRouter); // Wishlist route
-app.use('/api/cart', authenticateToken, cartRouter); // Cart route
-app.use("/api/order", authenticateToken, orderRoutes); 
-app.use("/api/search", searchRouter); 
-app.use("/api/alternatives", alternativeRouter); 
-app.use("/api/order-history",authenticateToken,orderhistoryRoutes);
-app.use("/api/bestproduct",authenticateToken,bestProductRouter);
-app.use("/api/feedback",feedbackRouter);
-app.use('/verify', verifyRouter);
-
-
+app.use("/api/cart", authenticateToken, cartRouter); // Cart route
+app.use("/api/order", authenticateToken, orderRoutes);
+app.use("/api/search", searchRouter);
+app.use("/api/alternatives", alternativeRouter);
+app.use("/api/order-history", authenticateToken, orderhistoryRoutes);
+app.use("/api/bestproduct", authenticateToken, bestProductRouter);
+app.use("/api/feedback", feedbackRouter);
+app.use("/verify", verifyRouter);
 
 // Error handling middleware
 app.use(errorHandler);
