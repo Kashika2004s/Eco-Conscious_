@@ -15,7 +15,7 @@ const Edit = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await fetch("https://eco-conscious-z418.onrender.com/api/user", {
+        const response = await fetch("https://eco-conscious-8oac.onrender.com/api/user", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -44,7 +44,7 @@ const Edit = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch("https://eco-conscious-z418.onrender.com/api/edit", {
+      const response = await fetch("https://eco-conscious-8oac.onrender.com/api/edit", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

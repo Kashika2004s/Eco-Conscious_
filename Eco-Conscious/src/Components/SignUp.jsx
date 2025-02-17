@@ -13,7 +13,7 @@ const SignUp = () => {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch("https://eco-conscious-i7g6.onrender.com/signup", {
+      const response = await fetch("https://eco-conscious-8oac.onrender.com/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
