@@ -1,32 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import tote from "../assets/tote.png";
+import per from "../assets/per.png";
+import shoe from "../assets/shoe.png";
 
 const Slider = () => {
   const navigate = useNavigate();
 
   const navigateToCategory = (category) => {
-    navigate(`/products/${category}`);
+    navigate(`/products/${category}`); // Corrected
   };
 
   const [activeIndex, setActiveIndex] = useState(0);
 
   const slides = [
     {
-      imageUrl: "/Eco_Tote.png", // Direct reference from public folder
+      imageUrl: tote,
       buttonStyle: { top: "68.5%", left: "58.5%", backgroundColor: "#8e9c77" },
       buttonText: "Explore !",
       textStyle: { color: "white", fontSize: "25px", fontWeight: "bold" },
       category: "bags",
     },
     {
-      imageUrl: "/perfume.png", // Direct reference from public folder
+      imageUrl: per,
       buttonStyle: { top: "66%", left: "37%", backgroundColor: "white" },
       buttonText: "Find Out !",
       textStyle: { color: "black", fontSize: "25px" },
       category: "Beauty Products",
     },
     {
-      imageUrl: "/shoe_image.png", // Direct reference from public folder
+      imageUrl: shoe,
       buttonStyle: { bottom: "4.5%", left: "40.15%", backgroundColor: "black" },
       buttonText: "Shop Now !",
       category: "footwear",
@@ -34,10 +37,10 @@ const Slider = () => {
   ];
 
   useEffect(() => {
-      const interval = setInterval(() => {
-        setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
-      }, 3000);
-      return () => clearInterval(interval);
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 2500);
+    return () => clearInterval(interval);
   }, [slides.length]);
 
   useEffect(() => {
@@ -80,7 +83,7 @@ const Slider = () => {
           style={{
             ...styles.carouselItem,
             display: index === activeIndex ? "block" : "none",
-            backgroundImage: `url(${slide.imageUrl})`,
+            backgroundImage: `url(${slide.imageUrl})`, // Corrected
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -96,16 +99,10 @@ const Slider = () => {
           </button>
         </div>
       ))}
-      <button
-        onClick={goToPreviousSlide}
-        style={styles.controlPrev}
-      >
+      <button onClick={goToPreviousSlide} style={styles.controlPrev}>
         &#10094;
       </button>
-      <button
-        onClick={goToNextSlide}
-        style={styles.controlNext}
-      >
+      <button onClick={goToNextSlide} style={styles.controlNext}>
         &#10095;
       </button>
     </div>
@@ -139,8 +136,8 @@ const styles = {
     fontWeight: "600",
     cursor: "pointer",
     transition: "background-color 0.3s ease",
-    width : "350px",
-    height : "84px"
+    width: "350px",
+    height: "84px",
   },
   controlPrev: {
     position: "absolute",
