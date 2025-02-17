@@ -39,14 +39,15 @@ mongoose
   .catch((error) => console.error("MongoDB Connection Error:", error.message));
 
 // Middleware
-app.use(
-  cors({
-    // Replace this with your actual frontend URL on Vercel
-    origin: process.env.REACT_APP_FRONTEND_URL, // Vercel frontend URL
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: [
+    'http://localhost:5173', // Localhost for development
+    'https://eco-conscious-brown.vercel.app', // Production URL
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
