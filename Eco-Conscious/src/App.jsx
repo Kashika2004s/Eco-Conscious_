@@ -24,6 +24,12 @@ import Alternative from "./Components/Alternative";
 import Bestproduct from "./Components/Bestproduct";
 import LearnMore from "./Components/LearnMore";
 
+// Define the API base URL based on the environment
+const API_BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://eco-conscious-brown.vercel.app/" // Vercel URL for production
+    : "http://localhost:3000"; // Localhost URL for development
+
 function App() {
   // Check if the user is authenticated by looking for the token in localStorage
   const token = localStorage.getItem("token");
@@ -66,7 +72,7 @@ function App() {
           path="/cart"
           element={isAuthenticated ? <Cart /> : <Navigate to="/" />}
         />
-        <Route path="/bestproduct" element={<Bestproduct></Bestproduct>} />
+        <Route path="/bestproduct" element={<Bestproduct />} />
         <Route path="/order/:orderId" element={<Order />} />
         <Route path="/search/:term" element={<SearchResults />} />
         <Route path="/alternatives/:category/:id" element={<Alternative />} />

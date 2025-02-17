@@ -27,11 +27,11 @@ const feedbackRouter = require("./routes/feedback");
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000; // Ensure this is only set to 3000 if no port is defined
+const port = process.env.PORT || 3000;
 
-// MongoDB Connection
+// MongoDB Connection using URI from .env file
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -53,14 +53,17 @@ app.use(express.static("public"));
 app.use("/uploads", express.static("uploads"));
 
 // Routes
+app.get("/", (req, res) => {
+  res.send("Welcome to the Eco-Conscious API");
+});
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/api/profile", authenticateToken, profileRouter);
 app.use("/api/products", authenticateToken, productsRouter);
 app.use("/api/edit", authenticateToken, editRouter);
 app.use("/api/delete", authenticateToken, deleteRouter);
-app.use("/api/wishlist", authenticateToken, wishlistRouter); // Wishlist route
-app.use("/api/cart", authenticateToken, cartRouter); // Cart route
+app.use("/api/wishlist", authenticateToken, wishlistRouter);
+app.use("/api/cart", authenticateToken, cartRouter);
 app.use("/api/order", authenticateToken, orderRoutes);
 app.use("/api/search", searchRouter);
 app.use("/api/alternatives", alternativeRouter);
@@ -72,7 +75,7 @@ app.use("/verify", verifyRouter);
 // Error handling middleware
 app.use(errorHandler);
 
-// Start Server
-app.listen(port, () =>
-  console.log(`Server running at http://localhost:${port}`)
+// Update the port binding to use the dynamic environment port.
+app.listen(process.env.PORT || 3000, () =>
+  console.log(`Server running at http://localhost:${process.env.PORT || 3000}`)
 );
