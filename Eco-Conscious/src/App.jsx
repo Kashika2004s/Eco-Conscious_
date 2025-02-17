@@ -27,7 +27,7 @@ import LearnMore from "./Components/LearnMore";
 // Define the API base URL based on the environment
 const API_BASE_URL =
   process.env.NODE_ENV === "production"
-    ? "https://eco-conscious-brown.vercel.app/" // Vercel URL for production
+    ? "https://eco-conscious-brown.vercel.app" // Vercel URL for production
     : "http://localhost:3000"; // Localhost URL for development
 
 function App() {

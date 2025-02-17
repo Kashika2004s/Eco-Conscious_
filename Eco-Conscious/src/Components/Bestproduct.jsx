@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+const API_BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://eco-conscious-brown.vercel.app"
+    : "http://localhost:3000";
 const BestProducts = () => {
   const [bestProducts, setBestProducts] = useState([]);
   const [currentScore, setCurrentScore] = useState({});

@@ -3,6 +3,11 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { height, width } from "@fortawesome/free-solid-svg-icons/fa0";
 
+const API_BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://eco-conscious-brown.vercel.app"
+    : "http://localhost:3000";
+
 const TopPicks = () => {
   const [topPicks, setTopPicks] = useState([]);
   const [hoveredButton, setHoveredButton] = useState(null);

@@ -3,7 +3,10 @@ import logo from "./download.png";
 import axios from "axios";
 import "./Styles/congratulationsText.css";
 import { Link } from "react-router-dom";
-
+const API_BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://eco-conscious-brown.vercel.app"
+    : "http://localhost:3000";
 const Alternative = ({ productId, category }) => {
   const [alternatives, setAlternatives] = useState([]);
   const [loading, setLoading] = useState(true);
